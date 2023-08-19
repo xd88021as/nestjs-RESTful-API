@@ -1,0 +1,7 @@
+{
+  "**/*.(js|jsx|ts|tsx)": ["eslint --fix", "prettier --ignore-path ./.prettierignore --write"],
+  "**/*.json": ["prettier --ignore-path ./.prettierignore --write"],
+  "**/*.prisma": [
+    "prettier --ignore-path ./.prettierignore --write --plugin=prettier-plugin-prisma"
+  ]
+}

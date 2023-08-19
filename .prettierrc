@@ -1,0 +1,12 @@
+{
+  "printWidth": 100,
+  "singleQuote": true,
+  "overrides": [
+    {
+      "files": "./prisma/seeds/*.seed.ts",
+      "options": {
+        "printWidth": 120
+      }
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "rootDir": ".",
+    "sourceMap": true,
+    "declaration": false,
+    "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "importHelpers": true,
+    "target": "es2015",
+    "module": "esnext",
+    "lib": ["es2017", "dom"],
+    "skipLibCheck": true,
+    "skipDefaultLibCheck": true,
+    "baseUrl": ".",
+    "paths": {
+      "@test/api/common/config": ["libs/api/common/config/src/index.ts"],
+      "@test/api/common/prisma": ["libs/api/common/prisma/src/index.ts"],
+      "@test/api/core/user": ["libs/api/core/user/src/index.ts"],
+      "@test/api/util/object": ["libs/api/util/object/src/index.ts"],
+      "@test/shared/data-access/base": ["libs/shared/data-access/base/src/index.ts"],
+      "@test/shared/data-access/user": ["libs/shared/data-access/user/src/index.ts"]
+    }
+  },
+  "exclude": ["node_modules", "tmp"]
+}
