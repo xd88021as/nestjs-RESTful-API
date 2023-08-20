@@ -1,4 +1,4 @@
-import { IntersectionType, PartialType, PickType } from '@nestjs/mapped-types';
+import { PartialType, PickType } from '@nestjs/mapped-types';
 import { UserBaseDto } from '@test/shared/data-access/base';
 import { Expose, Transform } from 'class-transformer';
 import { IsDateString, IsInt, IsOptional } from 'class-validator';
@@ -17,9 +17,7 @@ const reformatLimit = ({ value }: { value: number }): number => {
   return +value;
 };
 
-export class UserFindManyQueryDto extends IntersectionType(
-  PartialType(PickType(UserBaseDto, ['jobType'] as const))
-) {
+export class UserFindManyQueryDto extends PartialType(PickType(UserBaseDto, ['jobType'] as const)) {
   @Expose()
   @IsDateString()
   @IsOptional()
