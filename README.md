@@ -8,7 +8,7 @@
 
     pnpm install
 
-建立資料庫和快取（`PostgreSQL`、`Redis`）
+建立資料庫（`PostgreSQL`）
 
     pnpm docker-init
 
