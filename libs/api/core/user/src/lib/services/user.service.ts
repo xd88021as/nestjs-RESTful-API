@@ -24,7 +24,14 @@ export class UserService {
   }
 
   async toISO(date?: Date) {
+    const isoRegex = /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(\.\d{3})?Z$/;
     const offsetMilliseconds = 8 * 60 * 60 * 1000;
-    return date ? new Date(new Date(date).getTime() - offsetMilliseconds) : undefined;
+    return date
+      ? new Date(
+          isoRegex.test(`${date}`)
+            ? new Date(date).getTime() - offsetMilliseconds
+            : new Date(date).getTime()
+        )
+      : undefined;
   }
 }
