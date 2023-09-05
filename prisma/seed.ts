@@ -1,9 +1,9 @@
 import { PrismaClient } from '@prisma/client';
-import { seedUser } from './seeds/user.seed';
+import { seedGender } from './seeds/gender.seed';
 const prisma = new PrismaClient();
 
 async function main() {
-  await seedUser(prisma);
+  await seedGender(prisma);
 }
 main()
   .then(async () => {
