@@ -7,27 +7,32 @@ import {
 } from '@test/shared/data-access/user';
 import { UserService } from '../services/user.service';
 
-@Controller('api')
+@Controller('users')
 export class UserController {
   constructor(private readonly userService: UserService) {}
 
-  @Get('users')
+  @Get()
   async findMany(@Query() query: UserFindManyQueryDto): Promise<UserFindManyResponseDto> {
     const createdFrom = await this.userService.toISO(query.createdFrom);
     const createdTo = await this.userService.toISO(query.createdTo);
     const skip = (query.page - 1) * query.limit;
     const users = await this.userService.findMany({
-      where: { jobType: query.jobType, createdFrom, createdTo, skip, take: query.limit },
+      where: { genderName: query.genderName, createdFrom, createdTo, skip, take: query.limit },
     });
-    return UserFindManyResponseDto.generate(users);
+    return UserFindManyResponseDto.generate(
+      users.map((user) => ({
+        ...user,
+        genderName: user.gender.name,
+      }))
+    );
   }
 
-  @Get('user-detail/:id')
+  @Get(':uuid')
   async findUnique(@Param() param: UserFindUniqueParamDto): Promise<UserFindUniqueResponseDto> {
-    const user = await this.userService.findUnique({ where: { id: param.id } });
+    const user = await this.userService.findUnique({ where: { uuid: param.uuid } });
     if (!user) {
       throw new NotFoundException();
     }
-    return UserFindUniqueResponseDto.generate(user);
+    return UserFindUniqueResponseDto.generate({ ...user, genderName: user.gender?.name });
   }
 }
