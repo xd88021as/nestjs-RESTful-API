@@ -1,9 +1,4 @@
-import { Expose, Transform } from 'class-transformer';
-import { IsInt } from 'class-validator';
+import { PartialType, PickType } from '@nestjs/mapped-types';
+import { UserBaseDto } from '@test/shared/data-access/base';
 
-export class UserFindUniqueParamDto {
-  @Expose()
-  @Transform(({ value }) => +value)
-  @IsInt()
-  id: number;
-}
+export class UserFindUniqueParamDto extends PartialType(PickType(UserBaseDto, ['uuid'] as const)) {}

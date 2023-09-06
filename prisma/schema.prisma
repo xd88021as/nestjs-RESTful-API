@@ -9,14 +9,30 @@ datasource db {
 }
 
 model User {
-  id        Int      @id @default(autoincrement())
-  name      String?
-  jobType   String?  @map("job_type")
-  city      String?
-  zipCode   String?  @map("zip_code")
-  address   String?
-  gender    String?
-  createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz(3)
+  id                   Int                    @id @default(autoincrement())
+  uuid                 String                 @unique @default(uuid()) @db.Uuid
+  phone                String?                @unique
+  email                String?                @unique
+  password             String
+  firstName            String?                @map("first_name")
+  lastName             String?                @map("last_name")
+  birthDate            DateTime?              @map("birth_date") @db.Date
+  createdAt            DateTime               @default(now()) @map("created_at") @db.Timestamptz(3)
+  updatedAt            DateTime               @default(now()) @updatedAt @map("updated_at") @db.Timestamptz(3)
+  //
+  gender               Gender?                @relation(fields: [genderId], references: [id])
+  genderId             Int?                   @map("gender_id")
 
   @@map("user")
+}
+
+model Gender {
+  id        Int       @id
+  name      String    @unique
+  createdAt DateTime  @default(now()) @map("created_at") @db.Timestamptz(3)
+  updatedAt DateTime  @default(now()) @updatedAt @map("updated_at") @db.Timestamptz(3)
+  //
+  users     User[]
+
+  @@map("gender")
 }

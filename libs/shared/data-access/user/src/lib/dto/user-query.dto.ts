@@ -17,7 +17,9 @@ const reformatLimit = ({ value }: { value: number }): number => {
   return +value;
 };
 
-export class UserFindManyQueryDto extends PartialType(PickType(UserBaseDto, ['jobType'] as const)) {
+export class UserFindManyQueryDto extends PartialType(
+  PickType(UserBaseDto, ['genderName'] as const)
+) {
   @Expose()
   @IsDateString()
   @IsOptional()
