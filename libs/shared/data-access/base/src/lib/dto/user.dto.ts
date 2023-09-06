@@ -1,30 +1,49 @@
-import { Exclude, Expose, plainToInstance } from 'class-transformer';
-import { IsString } from 'class-validator';
+import { Exclude, Expose, plainToInstance, Transform } from 'class-transformer';
+import {
+  IsDateString,
+  IsEmail,
+  IsPhoneNumber,
+  IsString,
+  IsUUID,
+  MaxLength,
+  MinLength,
+} from 'class-validator';
+import { removeLeadingZeroFromPhoneNumber } from '../utils/transform.util';
 
 export class UserBaseDto {
   @Expose()
-  @IsString()
-  name: string;
+  @IsUUID()
+  uuid: string;
+
+  @Expose()
+  @IsPhoneNumber()
+  @Transform(removeLeadingZeroFromPhoneNumber)
+  phone: string;
+
+  @Expose()
+  @IsEmail()
+  email: string;
+
+  @Exclude()
+  @MinLength(8)
+  @MaxLength(20)
+  password: string;
 
   @Expose()
   @IsString()
-  jobType: string;
+  firstName: string;
 
   @Expose()
   @IsString()
-  city: string;
+  lastName: string;
+
+  @Expose()
+  @IsDateString()
+  birthDate: Date;
 
   @Expose()
   @IsString()
-  zipCode: string;
-
-  @Expose()
-  @IsString()
-  address: string;
-
-  @Expose()
-  @IsString()
-  gender: string;
+  genderName: string = null;
 
   @Exclude()
   static generate(data: UserBaseDto): UserBaseDto {
