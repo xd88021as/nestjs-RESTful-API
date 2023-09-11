@@ -1,4 +1,8 @@
 export default {
+  crypto: {
+    password: 'dev-password',
+    salt: 'dev-salt',
+  },
   database: {
     connector: 'postgresql',
     user: 'postgres',
