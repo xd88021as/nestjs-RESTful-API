@@ -1,3 +1,8 @@
+export interface CryptoConfig {
+  password: string;
+  salt: string;
+}
+
 export interface DatabaseConfig {
   connector: string;
   user: string;
