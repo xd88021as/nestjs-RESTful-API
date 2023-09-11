@@ -21,6 +21,7 @@
       "@test/api/core/user": ["libs/api/core/user/src/index.ts"],
       "@test/api/feature/auth": ["libs/api/feature/auth/src/index.ts"],
       "@test/api/util/object": ["libs/api/util/object/src/index.ts"],
+      "@test/shared/data-access/auth": ["libs/shared/data-access/auth/src/index.ts"],
       "@test/shared/data-access/base": ["libs/shared/data-access/base/src/index.ts"],
       "@test/shared/data-access/user": ["libs/shared/data-access/user/src/index.ts"]
     }

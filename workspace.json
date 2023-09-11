@@ -9,6 +9,7 @@
     "api-core-user": "libs/api/core/user",
     "api-feature-auth": "libs/api/feature/auth",
     "api-util-object": "libs/api/util/object",
+    "shared-data-access-auth": "libs/shared/data-access/auth",
     "shared-data-access-base": "libs/shared/data-access/base",
     "shared-data-access-user": "libs/shared/data-access/user"
   }
