@@ -7,11 +7,13 @@
     "api-common-config": "libs/api/common/config",
     "api-common-crypto": "libs/api/common/crypto",
     "api-common-prisma": "libs/api/common/prisma",
+    "api-core-shop": "libs/api/core/shop",
     "api-core-user": "libs/api/core/user",
     "api-feature-auth": "libs/api/feature/auth",
     "api-util-object": "libs/api/util/object",
     "shared-data-access-auth": "libs/shared/data-access/auth",
     "shared-data-access-base": "libs/shared/data-access/base",
+    "shared-data-access-shop": "libs/shared/data-access/shop",
     "shared-data-access-user": "libs/shared/data-access/user"
   }
 }
