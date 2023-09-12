@@ -1,5 +1,6 @@
 import { Controller, Get, NotFoundException, Param, Query, UseGuards } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport/dist/auth.guard';
+import { IdentityOwnersGuard, SetIdentityOwners } from '@test/api/common/authorization';
 import {
   UserFindManyQueryDto,
   UserFindManyResponseDto,
@@ -30,6 +31,8 @@ export class UserController {
   }
 
   @Get(':uuid')
+  @SetIdentityOwners({ identity: 'user', reqField: 'param', uuidName: 'uuid' })
+  @UseGuards(IdentityOwnersGuard)
   async findUnique(@Param() param: UserFindUniqueParamDto): Promise<UserFindUniqueResponseDto> {
     const user = await this.userService.findUnique({ where: { uuid: param.uuid } });
     if (!user) {

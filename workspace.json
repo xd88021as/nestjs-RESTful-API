@@ -3,6 +3,7 @@
   "version": 2,
   "projects": {
     "api": "apps/api",
+    "api-common-authorization": "libs/api/common/authorization",
     "api-common-config": "libs/api/common/config",
     "api-common-crypto": "libs/api/common/crypto",
     "api-common-prisma": "libs/api/common/prisma",
