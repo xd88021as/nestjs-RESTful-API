@@ -11,4 +11,8 @@ export default {
     port: 5234,
     schema: 'public',
   },
+  jwt: {
+    secret: 'dev',
+    expiresIn: '30d',
+  },
 };
