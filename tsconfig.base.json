@@ -15,6 +15,7 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@test/api/common/authorization": ["libs/api/common/authorization/src/index.ts"],
       "@test/api/common/config": ["libs/api/common/config/src/index.ts"],
       "@test/api/common/crypto": ["libs/api/common/crypto/src/index.ts"],
       "@test/api/common/prisma": ["libs/api/common/prisma/src/index.ts"],
