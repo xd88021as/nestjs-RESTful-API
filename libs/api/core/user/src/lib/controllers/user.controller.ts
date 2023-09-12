@@ -1,4 +1,5 @@
-import { Controller, Get, NotFoundException, Param, Query } from '@nestjs/common';
+import { Controller, Get, NotFoundException, Param, Query, UseGuards } from '@nestjs/common';
+import { AuthGuard } from '@nestjs/passport/dist/auth.guard';
 import {
   UserFindManyQueryDto,
   UserFindManyResponseDto,
@@ -7,6 +8,7 @@ import {
 } from '@test/shared/data-access/user';
 import { UserService } from '../services/user.service';
 
+@UseGuards(AuthGuard('jwt'))
 @Controller('users')
 export class UserController {
   constructor(private readonly userService: UserService) {}
@@ -22,7 +24,7 @@ export class UserController {
     return UserFindManyResponseDto.generate(
       users.map((user) => ({
         ...user,
-        genderName: user.gender.name,
+        genderName: user.gender?.name,
       }))
     );
   }

@@ -11,3 +11,8 @@ export interface DatabaseConfig {
   port: number;
   schema: string;
 }
+
+export interface JwtConfig {
+  secret: string;
+  expiresIn: string;
+}
