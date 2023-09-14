@@ -7,6 +7,14 @@ export const combineInternationalPhoneNumber = (
   return `${countryCode}-${phoneNumber}`;
 };
 
+export const convertLocalPhoneNumberToInternationalNumber = ({ value }: { value: string }): string => {
+  if (!value) {
+    return value;
+  }
+  const [plusAreaCode, number] = value.split('-');
+  return `+886-${+plusAreaCode}-${number}`;
+};
+
 export const removeLeadingZeroFromPhoneNumber = ({ value }: { value: string }): string => {
   if (!value) {
     return value;
