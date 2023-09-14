@@ -20,14 +20,16 @@ model Gender {
 }
 
 model Shop {
-  id        Int        @id @default(autoincrement())
-  uuid      String     @unique @default(uuid()) @db.Uuid
-  name      String     @map("name")
-  introduce String?    @map("introduce")
-  createdAt DateTime   @default(now()) @map("created_at") @db.Timestamptz(3)
-  updatedAt DateTime   @default(now()) @updatedAt @map("updated_at") @db.Timestamptz(3)
+  id                Int        @id @default(autoincrement())
+  uuid              String     @unique @default(uuid()) @db.Uuid
+  name              String     @unique @map("name")
+  localPhoneNumber  String?    @unique @map("local_phone_number")
+  mobilePhoneNumber String?    @map("mobile_phone_number")
+  introduce         String?    @map("introduce")
+  createdAt         DateTime   @default(now()) @map("created_at") @db.Timestamptz(3)
+  updatedAt         DateTime   @default(now()) @updatedAt @map("updated_at") @db.Timestamptz(3)
   //
-  users     UserShop[]
+  users             UserShop[]
 
   @@map("shop")
 }
