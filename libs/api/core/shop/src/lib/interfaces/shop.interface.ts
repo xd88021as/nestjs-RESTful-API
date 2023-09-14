@@ -1,5 +1,7 @@
 export interface ShopData {
   name: string;
+  localPhoneNumber?: string;
+  mobilePhoneNumber?: string;
   introduce?: string;
 }
 
@@ -15,6 +17,7 @@ export interface ShopFindUniqueParams {
   where: {
     id?: number;
     uuid?: string;
+    localPhoneNumber?: string;
   };
 }
 

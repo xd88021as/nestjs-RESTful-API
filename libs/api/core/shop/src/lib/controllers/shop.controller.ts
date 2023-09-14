@@ -33,9 +33,6 @@ export class ShopController {
     if (!shop) {
       throw new NotFoundException();
     }
-    return ShopFindUniqueResponseDto.generate({
-      ...shop,
-      userUuids: shop.users.map((userShop) => userShop.user.uuid),
-    });
+    return ShopFindUniqueResponseDto.generate(shop);
   }
 }
