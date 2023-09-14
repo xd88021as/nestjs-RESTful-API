@@ -11,8 +11,8 @@ export const convertLocalPhoneNumberToInternationalNumber = ({ value }: { value:
   if (!value) {
     return value;
   }
-  const [plusAreaCode, number] = value.split('-');
-  return `+886-${+plusAreaCode}-${number}`;
+  const [plusCountryCode, plusAreaCode, number] = value.split('-');
+  return `${plusCountryCode}-${+plusAreaCode}-${number}`;
 };
 
 export const removeLeadingZeroFromPhoneNumber = ({ value }: { value: string }): string => {
