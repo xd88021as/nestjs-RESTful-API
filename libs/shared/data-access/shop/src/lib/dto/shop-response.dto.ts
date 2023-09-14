@@ -1,9 +1,5 @@
 import { PickType } from '@nestjs/mapped-types';
-import {
-  CommonResponseDto,
-  ShopBaseDto,
-  ShopFindUniqueBaseDto,
-} from '@test/shared/data-access/base';
+import { CommonResponseDto, ShopBaseDto } from '@test/shared/data-access/base';
 import { Exclude, plainToInstance } from 'class-transformer';
 import { ValidateNested } from 'class-validator';
 
@@ -21,12 +17,12 @@ export class ShopFindManyResponseDto extends PickType(CommonResponseDto, ['data'
 
 export class ShopFindUniqueResponseDto extends PickType(CommonResponseDto, ['data']) {
   @ValidateNested()
-  data: ShopFindUniqueBaseDto;
+  data: ShopBaseDto;
 
   @Exclude()
-  static generate(data: ShopFindUniqueBaseDto): ShopFindUniqueResponseDto {
+  static generate(data: ShopBaseDto): ShopFindUniqueResponseDto {
     return plainToInstance(ShopFindUniqueResponseDto, {
-      data: ShopFindUniqueBaseDto.generate(data),
+      data: ShopBaseDto.generate(data),
     });
   }
 }

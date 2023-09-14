@@ -1,5 +1,9 @@
-import { Exclude, Expose, plainToInstance } from 'class-transformer';
-import { IsArray, IsString, IsUUID } from 'class-validator';
+import { Exclude, Expose, Transform, plainToInstance } from 'class-transformer';
+import { IsPhoneNumber, IsString, IsUUID } from 'class-validator';
+import {
+  convertLocalPhoneNumberToInternationalNumber,
+  removeLeadingZeroFromPhoneNumber,
+} from '../utils/transform.util';
 
 export class ShopBaseDto {
   @Expose()
@@ -11,36 +15,22 @@ export class ShopBaseDto {
   name: string;
 
   @Expose()
+  @IsPhoneNumber()
+  @Transform(convertLocalPhoneNumberToInternationalNumber)
+  localPhoneNumber: string;
+
+  @Expose()
+  @IsPhoneNumber()
+  @Transform(removeLeadingZeroFromPhoneNumber)
+  mobilePhoneNumber: string;
+
+  @Expose()
   @IsString()
   introduce: string;
 
   @Exclude()
   static generate(data: ShopBaseDto): ShopBaseDto {
     return plainToInstance(ShopBaseDto, data, { exposeDefaultValues: true });
-  }
-}
-
-export class ShopFindUniqueBaseDto {
-  @Expose()
-  @IsUUID()
-  uuid: string;
-
-  @Expose()
-  @IsString()
-  name: string;
-
-  @Expose()
-  @IsString()
-  introduce: string;
-
-  @Expose()
-  @IsArray()
-  @IsUUID()
-  userUuids: string[];
-
-  @Exclude()
-  static generate(data: ShopFindUniqueBaseDto): ShopFindUniqueBaseDto {
-    return plainToInstance(ShopFindUniqueBaseDto, data, { exposeDefaultValues: true });
   }
 }
 
