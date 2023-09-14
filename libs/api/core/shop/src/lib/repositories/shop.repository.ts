@@ -10,6 +10,8 @@ export class ShopRepository {
     const shop = await this.prisma.shop.create({
       data: {
         name: data.name,
+        localPhoneNumber: data.localPhoneNumber,
+        mobilePhoneNumber: data.mobilePhoneNumber,
         introduce: data.introduce,
       },
     });
@@ -18,9 +20,6 @@ export class ShopRepository {
 
   async findMany(params: ShopFindManyParams) {
     const shops = await this.prisma.shop.findMany({
-      include: {
-        users: { select: { user: { select: { uuid: true } } } },
-      },
       where: {
         users: params.where.userId ? { some: { userId: params.where.userId } } : undefined,
       },
@@ -38,6 +37,7 @@ export class ShopRepository {
       where: {
         id: params.where.id,
         uuid: params.where.uuid,
+        localPhoneNumber: params.where.localPhoneNumber,
       },
     });
     return shop;
@@ -47,6 +47,8 @@ export class ShopRepository {
     const shop = await this.prisma.shop.update({
       data: {
         name: data.name,
+        localPhoneNumber: data.localPhoneNumber,
+        mobilePhoneNumber: data.mobilePhoneNumber,
         introduce: data.introduce,
       },
       where: { id },

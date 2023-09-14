@@ -34,7 +34,12 @@ export class UserShopController {
     @Param() param: UserShopParamDto
   ): Promise<void> {
     const user = await this.userService.findUnique({ where: { uuid: param.userUuid } });
-    const shop = await this.shopService.create({ name: body.name, introduce: body.introduce });
+    const shop = await this.shopService.create({
+      name: body.name,
+      localPhoneNumber: body.localPhoneNumber,
+      mobilePhoneNumber: body.mobilePhoneNumber,
+      introduce: body.introduce,
+    });
     await this.shopService.createUserShop({ shopId: shop.id, userId: user.id });
   }
 
@@ -49,6 +54,11 @@ export class UserShopController {
     if (!shop.users.find((userShop) => userShop.user.uuid === param.userUuid)) {
       throw new ForbiddenException();
     }
-    await this.shopService.update(shop.id, { name: body.name, introduce: body.introduce });
+    await this.shopService.update(shop.id, {
+      name: body.name,
+      localPhoneNumber: body.localPhoneNumber,
+      mobilePhoneNumber: body.mobilePhoneNumber,
+      introduce: body.introduce,
+    });
   }
 }
