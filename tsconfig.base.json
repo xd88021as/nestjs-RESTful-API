@@ -26,6 +26,7 @@
       "@test/api/util/object": ["libs/api/util/object/src/index.ts"],
       "@test/shared/data-access/auth": ["libs/shared/data-access/auth/src/index.ts"],
       "@test/shared/data-access/base": ["libs/shared/data-access/base/src/index.ts"],
+      "@test/shared/data-access/commodity": ["libs/shared/data-access/commodity/src/index.ts"],
       "@test/shared/data-access/shop": ["libs/shared/data-access/shop/src/index.ts"],
       "@test/shared/data-access/user": ["libs/shared/data-access/user/src/index.ts"]
     }

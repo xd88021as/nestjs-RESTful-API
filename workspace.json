@@ -14,6 +14,7 @@
     "api-util-object": "libs/api/util/object",
     "shared-data-access-auth": "libs/shared/data-access/auth",
     "shared-data-access-base": "libs/shared/data-access/base",
+    "shared-data-access-commodity": "libs/shared/data-access/commodity",
     "shared-data-access-shop": "libs/shared/data-access/shop",
     "shared-data-access-user": "libs/shared/data-access/user"
   }
