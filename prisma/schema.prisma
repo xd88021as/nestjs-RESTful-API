@@ -8,6 +8,31 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+model Commodity {
+  id       Int                @id @default(autoincrement())
+  uuid     String             @unique @default(uuid()) @db.Uuid
+  name     String
+  unitCent Int                @map("unit_cent")
+  //
+  shop     Shop               @relation(fields: [shopId], references: [id])
+  shopId   Int                @map("shop_id")
+  //
+  options  CommodityOptions[]
+
+  @@map("commodity")
+}
+
+model CommodityOptions {
+  id          Int       @id @default(autoincrement())
+  name        String
+  unitCent    Int       @map("unit_cent")
+  //
+  commodity   Commodity @relation(fields: [commodityId], references: [id])
+  commodityId Int       @map("commodity_id")
+
+  @@map("commodity_options")
+}
+
 model Gender {
   id        Int      @id
   name      String   @unique
@@ -20,15 +45,16 @@ model Gender {
 }
 
 model Shop {
-  id                Int        @id @default(autoincrement())
-  uuid              String     @unique @default(uuid()) @db.Uuid
-  name              String     @unique @map("name")
-  localPhoneNumber  String?    @unique @map("local_phone_number")
-  mobilePhoneNumber String?    @map("mobile_phone_number")
-  introduce         String?    @map("introduce")
-  createdAt         DateTime   @default(now()) @map("created_at") @db.Timestamptz(3)
-  updatedAt         DateTime   @default(now()) @updatedAt @map("updated_at") @db.Timestamptz(3)
+  id                Int         @id @default(autoincrement())
+  uuid              String      @unique @default(uuid()) @db.Uuid
+  name              String      @unique @map("name")
+  localPhoneNumber  String?     @unique @map("local_phone_number")
+  mobilePhoneNumber String?     @map("mobile_phone_number")
+  introduce         String?     @map("introduce")
+  createdAt         DateTime    @default(now()) @map("created_at") @db.Timestamptz(3)
+  updatedAt         DateTime    @default(now()) @updatedAt @map("updated_at") @db.Timestamptz(3)
   //
+  commoditys        Commodity[]
   users             UserShop[]
 
   @@map("shop")
